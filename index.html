@@ -33,17 +33,20 @@
             justify-content: center;
             align-items: center;
         }
-        .box:hover{
+
+        .box:hover {
             cursor: pointer;
             box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
             border-radius: 5px;
             transition: 0.4s;
         }
+
         .heading {
             text-align: center;
             font-size: 50px;
         }
-        .current_player{
+
+        .current_player {
             text-align: center;
             font-weight: bold;
             font-size: 23px;
@@ -56,22 +59,23 @@
     <p class="current_player">Current Player: <span id="currentplayer">X</span></p>
     <div class="board">
         <div class="row">
-            <div class="box">0</div>
-            <div class="box">1</div>
-            <div class="box">2</div>
+            <div class="box" onclick="selectbox(0)">0</div>
+            <div class="box" onclick="selectbox(1)">1</div>
+            <div class="box" onclick="selectbox(2)">2</div>
         </div>
         <div class="row">
-            <div class="box">3</div>
-            <div class="box">4</div>
-            <div class="box">5</div>
+            <div class="box" onclick="selectbox(3)">3</div>
+            <div class="box" onclick="selectbox(4)">4</div>
+            <div class="box" onclick="selectbox(5)">5</div>
         </div>
         <div class="row">
-            <div class="box">6</div>
-            <div class="box">7</div>
-            <div class="box">8</div>
+            <div class="box" onclick="selectbox(6)">6</div>
+            <div class="box" onclick="selectbox(7)">7</div>
+            <div class="box" onclick="selectbox(8)">8</div>
         </div>
     </div>
     <script>
+        let currentplayer = 'X';
         const board = [-1, -1, -1, -1, -1, -1, -1, -1, -1];
 
         function renderboard() {
@@ -84,13 +88,31 @@
                     boxelement.innerHTML = '<img src = "arrow.png" height="50px"/>';
                 }
                 else {
-                    boxelement.innerHTML = ' ';
+                    boxelement.innerHTML ='';
                 }
             })
         }
         renderboard();
 
-        
+        function selectbox(boxNumber) {
+            if (board[boxNumber] !== -1) {
+                alert("Invalid Move");
+                return;
+            }
+            board[boxNumber] = currentplayer;
+            renderboard();
+
+
+            if (currentplayer === "X") {
+                currentPlayer = "O";
+            }
+            else {
+                currentPlayer = "X";
+            }
+            const currentPlayerElement = document.getElementById("currentplayer");
+            currentPlayerElement.innerHTML = currentplayer;
+        }
+
     </script>
 </body>
 
