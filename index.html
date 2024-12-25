@@ -48,8 +48,7 @@
 
         .current_player {
             text-align: center;
-            font-weight: bold;
-            font-size: 23px;
+            font-size: 20px;
         }
         .Reset_btn{
             cursor: pointer;
@@ -195,6 +194,11 @@
             alert("Player O wins");
            }else if(isPlayerPresent([2,4,6], "O")){
             alert("Player O wins");
+           }
+
+           if(!board.includes(-1)){
+            alert("It's Draw");
+            renderboard();
            }
         }
     </script>
